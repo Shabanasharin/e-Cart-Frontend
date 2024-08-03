@@ -1,0 +1,6 @@
+@import 'ngx-toastr/toastr';
+*{
+    margin: 0;
+    font-family: "PT Serif", serif;
+    padding: 0;
+}
