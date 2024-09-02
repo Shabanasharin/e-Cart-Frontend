@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../services/api.service';
@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+
+  userName:string=''
+  data:string=''
 
   loginForm = this.fb.group({
     email:['',[Validators.email,Validators.required]],
@@ -17,6 +20,9 @@ export class LoginComponent {
   })
 
   constructor(private fb:FormBuilder,private toaster:ToastrService,private api:ApiService,private router:Router){}
+  ngOnInit(): void {
+  
+  }
 
   login(){
     if(this.loginForm.valid){
@@ -30,6 +36,7 @@ export class LoginComponent {
           this.loginForm.reset()
           sessionStorage.setItem("user",JSON.stringify(result.user))
           sessionStorage.setItem("token",result.token)
+          
           this.api.getWishlistCount()
           this.api.getCartCount()
           this.router.navigateByUrl("")

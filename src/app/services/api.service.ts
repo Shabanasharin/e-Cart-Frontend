@@ -10,7 +10,7 @@ export class ApiService {
   wishlistCount = new BehaviorSubject(0)
   cartCount = new BehaviorSubject(0)
 
-  server_url = "https://style-guru-backend.onrender.com"
+  server_url = "https://e-cart-server-pp7x.onrender.com"
   
   constructor(private http:HttpClient) { 
     if(sessionStorage.getItem("token")){
